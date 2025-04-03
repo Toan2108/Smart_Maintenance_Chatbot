@@ -1,7 +1,0 @@
-streamlit
-openai>=1.0.0
-pandas
-python-dotenv
-sentence-transformers
-scikit-learn
-openpyxl
