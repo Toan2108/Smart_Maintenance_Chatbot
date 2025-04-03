@@ -63,12 +63,12 @@ Vui lòng trả lời ngắn gọn, chính xác, và dễ hiểu.
 """
 
     # Gọi API GPT-3.5
-    try:
-from openai import OpenAI
+try:
+    from openai import OpenAI
 
-client = OpenAI()
+    client = OpenAI()
 
-response = client.chat.completions.create(
+    response = client.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[
         {"role": "user", "content": prompt}
