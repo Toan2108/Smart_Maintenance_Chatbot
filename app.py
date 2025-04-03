@@ -64,14 +64,18 @@ Vui lòng trả lời ngắn gọn, chính xác, và dễ hiểu.
 
     # Gọi API GPT-3.5
     try:
-        response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "user", "content": prompt}
-            ]
-        )
+from openai import OpenAI
 
-        answer = response.choices[0].message.content.strip()
+client = OpenAI()
+
+response = client.chat.completions.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "user", "content": prompt}
+    ]
+)
+answer = response.choices[0].message.content.strip()
+
 
         # Hiển thị kết quả
         st.markdown("### 🧠 Kết quả từ AI:")
