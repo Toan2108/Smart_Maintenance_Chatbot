@@ -36,7 +36,7 @@ if query:
 
     # Tìm văn bản gần nhất
     D, I = index.search(np.array(query_embedding), k=1)
-top_idx = I[0][0]
+    top_idx = I[0][0]
 
 # Nếu docs là dict → chuyển sang list
 if isinstance(docs, dict):
