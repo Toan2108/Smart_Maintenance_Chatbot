@@ -34,20 +34,24 @@ if query:
     model = SentenceTransformer("paraphrase-MiniLM-L6-v2")
     query_embedding = model.encode([query])
 
-    # Tìm văn bản gần nhất
-    D, I = index.search(np.array(query_embedding), k=1)
-    top_idx = I[0][0]
-
-# Nếu docs là dict → chuyển sang list
+# Tìm văn bản gần nhất
+    D, I = index.search(np.array(query_embedding), k=3)
+# Nếu docs là dict thì chuyển sang list
 if isinstance(docs, dict):
     docs = list(docs.values())
 
-# Xử lý lỗi nếu chỉ số vượt quá độ dài
-if top_idx < len(docs):
-    context = docs[top_idx]
+# Lấy nhiều đoạn context từ chỉ số trả về (k=3)
+top_indices = I[0]
+contexts = []
+
+for idx in top_indices:
+    if idx != -1 and idx < len(docs):
+        contexts.append(docs[idx])
+
+if contexts:
+    context = "\n\n".join(contexts)
 else:
     context = "Không tìm thấy dữ liệu phù hợp."
-
 
     # Tạo prompt cho OpenAI
     prompt = f"""
@@ -61,6 +65,10 @@ Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu li�
 
 Vui lòng trả lời ngắn gọn, chính xác, và dễ hiểu.
 """
+st.subheader("🧾 Các đoạn dữ liệu được dùng:")
+for i, c in enumerate(contexts):
+    st.markdown(f"**Đoạn {i+1}:**")
+    st.code(c)
 
     # Gọi API GPT-3.5
 # Gọi API GPT-3.5
