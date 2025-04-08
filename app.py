@@ -9,25 +9,23 @@ import zipfile
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
 from utils import load_faiss_and_docs
+import gdown  # thêm thư viện này ở đầu
 
 # Hàm tải file zip từ Google Drive
 def download_and_extract_model():
-    model_url = "https://drive.google.com/uc?id=1GwQQmdZ2O2wGixLKiRk9MiMtBfToozll"
+    model_url = "https://drive.google.com/uc?id=1GwQQmdZ2O2wGixLKiRk9MiMtBfToozll"  # đúng định dạng gdown
     zip_path = "local_model.zip"
     extract_folder = "local_model"
 
     if not os.path.exists(extract_folder):
-        # Tải file zip
-        with requests.get(model_url, stream=True) as r:
-            with open(zip_path, "wb") as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    f.write(chunk)
+        # Tải file zip bằng gdown
+        gdown.download(model_url, zip_path, quiet=False)
 
-        # Giải nén
+        # Giải nén file zip
         with zipfile.ZipFile(zip_path, 'r') as zip_ref:
             zip_ref.extractall(extract_folder)
 
-        os.remove(zip_path)  # Xoá file zip sau khi giải nén
+        os.remove(zip_path)  # Xóa file zip sau khi giải nén
 
     return extract_folder
 
