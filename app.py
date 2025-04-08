@@ -27,22 +27,6 @@ def download_and_extract_model():
     return extract_folder
 
 # --- Tải mô hình từ Google Drive ---
-def download_and_extract_model():
-    model_url = "https://drive.google.com/uc?id=1GwQQmdZ2O2wGixLKiRk9MiMtBfToozll"
-    zip_path = "local_model.zip"
-    extract_folder = "local_model"
-
-    if not os.path.exists(extract_folder):
-        with requests.get(model_url, stream=True) as r:
-            with open(zip_path, "wb") as f:
-                for chunk in r.iter_content(chunk_size=8192):
-                    f.write(chunk)
-
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            zip_ref.extractall(extract_folder)
-        os.remove(zip_path)
-
-    return extract_folder
 
 # --- Tải model ---
 model_path = download_and_extract_model()
