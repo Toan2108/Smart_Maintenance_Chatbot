@@ -13,7 +13,7 @@ import gdown
 
 # --- Hàm tải và giải nén mô hình từ Google Drive ---
 def download_and_extract_model():
-    file_id = "1DRWgv0tR2dBEWREsm3zgY5O2L6dlDm75"
+    file_id = "1R5j9GhJ-mHjxZh9HvIPRgPzZszWSedCM"
     zip_path = "local_model.zip"
     extract_folder = "local_model"
 
