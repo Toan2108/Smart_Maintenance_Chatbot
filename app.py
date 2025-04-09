@@ -52,6 +52,17 @@ if query:
     # Encode câu hỏi và tìm top-k văn bản
     query_embedding = model.encode([query])
     D, I = index.search(np.array(query_embedding), k=3)
+# ✅ In khoảng cách và chỉ số để kiểm tra FAISS
+st.write("🔍 Khoảng cách FAISS trả về (D):", D.tolist())
+st.write("🔢 Chỉ số FAISS trả về (I):", I.tolist())
+
+# Nếu muốn kiểm tra nội dung từng đoạn:
+st.write("🧾 Các đoạn dữ liệu tương ứng:")
+for i in I[0]:
+    if i != -1 and i < len(docs):
+        st.code(docs[i])
+    else:
+        st.code("⛔ Không có dữ liệu phù hợp cho chỉ số này.")
 
     # Nếu docs là dict thì chuyển sang list
     if isinstance(docs, dict):
