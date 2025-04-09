@@ -25,8 +25,8 @@ def load_faiss_and_docs():
     """
 
     # Google Drive file IDs
-    faiss_id = "1xw_y4wEHQSsdsTKDVUrDiKgJ-azKFzdB"
-    docs_id = "1B9MXTHJHU98YCyDK03Dq9VdJuvMLSWDe"
+    faiss_id = "1nFlZe7wPsvR0r4C0Ov9h9qvMv2YBYj8S"
+    docs_id = "1J5Ll5eIlWx4gyInjKreHtpR94fWrSvhD"
 
     # Output local file paths
     faiss_path = "index.faiss"
