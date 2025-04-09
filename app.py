@@ -72,7 +72,7 @@ Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu li�
 --- Câu hỏi ---
 {query}
 
-Vui lòng trả lời ngắn gọn, chính xác, và dễ hiểu.
+Vui lòng trả lời ngắn gọn, chính xác, và dễ hiểu, và chỉ dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên.
 """
 
     # Hiển thị ngữ cảnh đã dùng
