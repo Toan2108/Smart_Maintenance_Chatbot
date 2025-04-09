@@ -1,6 +1,7 @@
 # ✅ Gọi Streamlit config đầu tiên
 import streamlit as st
 st.set_page_config(page_title="AI Chatbot Bảo Trì", layout="wide")
+st.image("https://raw.githubusercontent.com/Toan2108/Smart_Maintenance_Chatbot/main/Logo.jpg", width=200)
 
 # --- Import thư viện ---
 import openai
