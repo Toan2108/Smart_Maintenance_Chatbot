@@ -34,6 +34,8 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # --- Cấu hình Streamlit ---
+# --- Tùy chọn bật chế độ kiểm tra FAISS ---
+DEBUG = st.sidebar.checkbox("🛠 Hiện thông tin kiểm tra FAISS")
 st.set_page_config(page_title="AI Chatbot Bảo Trì", layout="wide")
 st.title("🤖 Smart Maintenance Chatbot")
 st.markdown("Chatbot hỗ trợ kỹ thuật viên tra cứu lỗi & hướng xử lý từ dữ liệu huấn luyện nội bộ.")
@@ -58,20 +60,22 @@ if isinstance(docs, dict):
     docs = list(docs.values())
 
 # ✅ DEBUG: Kiểm tra chỉ số và độ dài
-st.write("📏 FAISS Distance (D):", D.tolist())
-st.write("🔢 FAISS Index (I):", I.tolist())
-st.write("📚 Tổng số đoạn văn (docs):", len(docs))
+if DEBUG:
+    st.write("📏 FAISS Distance (D):", D.tolist())
+    st.write("🔢 FAISS Index (I):", I.tolist())
+    st.write("📚 Tổng số đoạn văn (docs):", len(docs))
 
 st.write("🔍 Khoảng cách FAISS trả về (D):", D.tolist())
 st.write("🔢 Chỉ số FAISS trả về (I):", I.tolist())
 
 # Nếu muốn kiểm tra nội dung từng đoạn:
-st.write("🧾 Các đoạn dữ liệu tương ứng:")
-for i in I[0]:
-    if i != -1 and i < len(docs):
-        st.code(docs[i])
-    else:
-        st.code("⛔ Không có dữ liệu phù hợp cho chỉ số này.")
+if DEBUG:
+    st.write("🧾 Các đoạn dữ liệu tương ứng:")
+    for i in I[0]:
+        if 0 <= i < len(docs):
+            st.code(docs[i])
+        else:
+            st.code(f"⛔ Không có dữ liệu phù hợp cho chỉ số {i}")
 
     # Nếu docs là dict thì chuyển sang list
     if isinstance(docs, dict):
