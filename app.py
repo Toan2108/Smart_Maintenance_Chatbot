@@ -53,6 +53,15 @@ if query:
     query_embedding = model.encode([query])
     D, I = index.search(np.array(query_embedding), k=3)
 # ✅ In khoảng cách và chỉ số để kiểm tra FAISS
+# ✅ Chuyển docs về list nếu là dict
+if isinstance(docs, dict):
+    docs = list(docs.values())
+
+# ✅ DEBUG: Kiểm tra chỉ số và độ dài
+st.write("📏 FAISS Distance (D):", D.tolist())
+st.write("🔢 FAISS Index (I):", I.tolist())
+st.write("📚 Tổng số đoạn văn (docs):", len(docs))
+
 st.write("🔍 Khoảng cách FAISS trả về (D):", D.tolist())
 st.write("🔢 Chỉ số FAISS trả về (I):", I.tolist())
 
@@ -68,10 +77,20 @@ for i in I[0]:
     if isinstance(docs, dict):
         docs = list(docs.values())
 
-    # Lấy ngữ cảnh từ top-k đoạn văn
-    top_indices = I[0]
-    contexts = [docs[i] for i in top_indices if i != -1 and i < len(docs)]
+# ✅ Lọc các đoạn văn bản hợp lệ từ chỉ số FAISS
+top_indices = I[0]
+contexts = []
+
+for idx in top_indices:
+    if 0 <= idx < len(docs):
+        contexts.append(docs[idx])
+    else:
+        st.warning(f"⚠️ Chỉ số {idx} vượt ngoài phạm vi docs.")
+
     context = "\n\n".join(contexts) if contexts else "Không tìm thấy dữ liệu phù hợp."
+if not contexts:
+    st.error("❌ Không tìm thấy đoạn dữ liệu phù hợp để trả lời.")
+    st.stop()
 
     # Prompt cho OpenAI
     prompt = f"""
