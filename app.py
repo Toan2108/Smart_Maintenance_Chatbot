@@ -132,12 +132,16 @@ chat_history = "\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state.history
 
 prompt = f"""
 {chat_history}
-Q: {query}
-Dưới đây là dữ liệu kỹ thuật nội bộ:
+
+--- Câu hỏi ---
+{query}
+
+--- Dưới đây là dữ liệu kỹ thuật nội bộ ---
 {context}
 
-Hãy trả lời ngắn gọn, chính xác, dễ hiểu và chỉ dựa vào dữ liệu nội bộ. Nếu có thể, hãy đề xuất ít nhất 3 giải pháp.
+Hãy trả lời ngắn gọn, chính xác, dễ hiểu và dựa vào DỮ LIỆU NỘI BỘ bên trên. Nếu có thể, hãy đề xuất ít nhất 3 giải pháp.
 """
+
 
 --- Dữ liệu kỹ thuật ---
 {context}
