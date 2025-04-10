@@ -129,7 +129,7 @@ if query:
 # Tạo đoạn hội thoại trước (nếu có)
 chat_history = "\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state.history])
 
-    prompt = f"""
+prompt = f"""
 Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu liên quan:
 
 {chat_history}
