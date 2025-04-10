@@ -5,8 +5,7 @@ if "visit_count" not in st.session_state:
     st.session_state.visit_count = 1
 else:
     st.session_state.visit_count += 1
-if "history" not in st.session_state:
-    st.session_state.history = []
+
 st.set_page_config(page_title="AI Chatbot Bảo Trì", layout="wide")
 st.image("https://raw.githubusercontent.com/Toan2108/Smart_Maintenance_Chatbot/main/Logo.jpg", width=200)
 
@@ -71,15 +70,6 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # --- Tiêu đề giao diện ---
-if st.session_state.history:
-    st.markdown("## 🗒️ Lịch sử hội thoại:")
-    for i, (q, a) in enumerate(st.session_state.history, 1):
-        with st.expander(f"Câu {i}: {q}"):
-            st.write(a)
-if st.button("🧹 Xóa hội thoại"):
-    st.session_state.history = []
-    st.experimental_rerun()
-
 st.title("🤖 Smart Maintenance Chatbot")
 st.markdown("Chatbot hỗ trợ kỹ thuật viên tra cứu lỗi & hướng xử lý từ dữ liệu huấn luyện nội bộ.")
 
@@ -125,27 +115,23 @@ if query:
         st.error("❌ Không tìm thấy đoạn dữ liệu phù hợp để trả lời.")
         st.stop()
 
-
-# Tạo đoạn hội thoại trước (nếu có)
-chat_history = "\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state.history])
-
-prompt = f"""
+    prompt = f"""
 Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu liên quan:
 
-{chat_history}
+--- Dữ liệu kỹ thuật ---
+{context}
 
 --- Câu hỏi ---
 {query}
 
-    Hãy trả lời ngắn gọn, chính xác, dễ hiểu và dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp.
+Vui lòng trả lời ngắn gọn, chính xác, dễ hiểu, và dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp.
 """
 
-
-# ✅ Hiển thị các đoạn dữ liệu được dùng
-st.subheader("📄 Các đoạn dữ liệu được dùng:")
-for i, c in enumerate(contexts):
-    st.markdown(f"**Đoạn {i+1}:**")
-    st.code(c)
+    # ✅ Hiển thị các đoạn dữ liệu được dùng
+    st.subheader("📄 Các đoạn dữ liệu được dùng:")
+    for i, c in enumerate(contexts):
+        st.markdown(f"**Đoạn {i+1}:**")
+        st.code(c)
 
     # ✅ Gọi API OpenAI
     try:
@@ -157,7 +143,6 @@ for i, c in enumerate(contexts):
             messages=[{"role": "user", "content": prompt}]
         )
         answer = response.choices[0].message.content.strip()
-        st.session_state.history.append((query, answer))
 
         st.markdown("### 🤖 Kết quả từ AI:")
         st.success(answer)
