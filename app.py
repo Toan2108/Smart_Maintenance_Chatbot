@@ -70,7 +70,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # --- Tiêu đề giao diện ---
 st.title("🤖 Smart Maintenance Chatbot")
-st.markdown("Chatbot hỗ trợ kỹ thuật viên tra cứu lỗi & hướng xử lý từ dữ liệu huấn luyện nội bộ.")
+st.markdown("Chatbot hỗ trợ kỹ thuật viên tra cứu lỗi & hướng xử lý từ dữ liệu huấn luyện của chuyên gia.")
 
 # --- Load FAISS index và dữ liệu ---
 faiss_path, docs_path = load_faiss_and_docs()
@@ -123,7 +123,7 @@ Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu li�
 --- Câu hỏi ---
 {query}
 
-Vui lòng trả lời ngắn gọn, chính xác, dễ hiểu, và dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp, bao gồm ít nhất 1 giải pháp phòng ngừa.
+Vui lòng trả lời ngắn gọn, chính xác, dễ hiểu, và dựa vào thông tin từ DỮ LIỆU kỹ thuật bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp, bao gồm ít nhất 1 giải pháp phòng ngừa.
 """
 
     # ✅ Hiển thị các đoạn dữ liệu được dùng
