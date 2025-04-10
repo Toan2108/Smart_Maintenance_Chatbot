@@ -139,7 +139,8 @@ Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu li�
 
 #--- Dưới đây là dữ liệu kỹ thuật nội bộ ---
 {context}
-"""Vui lòng trả lời ngắn gọn, chính xác, dễ hiểu, và dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp."""
+Vui lòng trả lời ngắn gọn, chính xác, dễ hiểu, và dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp.
+"""
 
 # ✅ Hiển thị các đoạn dữ liệu được dùng
 st.subheader("📄 Các đoạn dữ liệu được dùng:")
