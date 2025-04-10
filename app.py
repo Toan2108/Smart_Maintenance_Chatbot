@@ -68,7 +68,7 @@ query = st.text_input("💬 Nhập câu hỏi kỹ thuật hoặc lỗi máy mó
 if query:
     # Encode câu hỏi & tìm top-k
     query_embedding = model.encode([query])
-        st.session_state.visit_count += 1  # Tăng lượt đếm khi người dùng đặt câu hỏi
+    st.session_state.visit_count += 1  # Tăng lượt đếm khi người dùng đặt câu hỏi
 
     D, I = index.search(np.array(query_embedding), k=3)
 
