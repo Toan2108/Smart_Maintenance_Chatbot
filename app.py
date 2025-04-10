@@ -129,7 +129,7 @@ if query:
 # Tạo đoạn hội thoại trước (nếu có)
 chat_history = "\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state.history])
 
-prompt = f"""
+    prompt = f"""
 Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu liên quan:
 
 {chat_history}
@@ -140,7 +140,7 @@ Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu li�
 --- Dưới đây là dữ liệu kỹ thuật nội bộ ---
 {context}
 
-Hãy trả lời ngắn gọn, chính xác, dễ hiểu và dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp.
+    Hãy trả lời ngắn gọn, chính xác, dễ hiểu và dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp.
 """
 
 
