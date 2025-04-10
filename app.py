@@ -138,7 +138,7 @@ prompt = f"""
 
 #--- Dưới đây là dữ liệu kỹ thuật nội bộ ---
 {context}
-
+"""
 Hãy trả lời ngắn gọn, chính xác, dễ hiểu và dựa vào DỮ LIỆU NỘI BỘ bên trên. Nếu có thể, hãy đề xuất ít nhất 3 giải pháp.
 """
 
