@@ -1,5 +1,11 @@
 # ✅ Gọi Streamlit config đầu tiên
 import streamlit as st
+# --- Khởi tạo bộ đếm truy cập phiên ---
+if "visit_count" not in st.session_state:
+    st.session_state.visit_count = 1
+else:
+    st.session_state.visit_count += 1
+
 st.set_page_config(page_title="AI Chatbot Bảo Trì", layout="wide")
 st.image("https://raw.githubusercontent.com/Toan2108/Smart_Maintenance_Chatbot/main/Logo.jpg", width=200)
 
@@ -18,6 +24,7 @@ import gdown
 
 # --- Tùy chọn chế độ DEBUG ---
 DEBUG = st.sidebar.checkbox("🛠 Hiện thông tin kiểm tra FAISS")
+st.sidebar.markdown(f"🔢 **Lượt truy cập của bạn trong phiên này:** `{st.session_state.visit_count}`")
 
 # --- Hàm tải và giải nén mô hình từ Google Drive ---
 def download_and_extract_model():
@@ -61,6 +68,8 @@ query = st.text_input("💬 Nhập câu hỏi kỹ thuật hoặc lỗi máy mó
 if query:
     # Encode câu hỏi & tìm top-k
     query_embedding = model.encode([query])
+        st.session_state.visit_count += 1  # Tăng lượt đếm khi người dùng đặt câu hỏi
+
     D, I = index.search(np.array(query_embedding), k=3)
 
     # ✅ DEBUG: Hiển thị kiểm tra nội bộ nếu được bật
