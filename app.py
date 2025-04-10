@@ -20,11 +20,32 @@ import zipfile
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
 from utils import load_faiss_and_docs
+import csv
+from datetime import datetime
+import socket
+
+def log_visit(query_text):
+    try:
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        hostname = socket.gethostname()
+        ip = socket.gethostbyname(hostname)
+        with open("visit_logs.csv", mode="a", newline="", encoding="utf-8") as file:
+            writer = csv.writer(file)
+            writer.writerow([timestamp, ip, query_text])
+    except Exception as e:
+        st.warning(f"⚠️ Không thể ghi log truy cập: {e}")
+
 import gdown
 
 # --- Tùy chọn chế độ DEBUG ---
 DEBUG = st.sidebar.checkbox("🛠 Hiện thông tin kiểm tra FAISS")
 st.sidebar.markdown(f"🔢 **Lượt truy cập của bạn trong phiên này:** `{st.session_state.visit_count}`")
+try:
+    with open("visit_logs.csv", "r", encoding="utf-8") as f:
+        total_visits = sum(1 for _ in f)
+        st.sidebar.markdown(f"📈 **Tổng lượt truy cập:** {total_visits}")
+except:
+    st.sidebar.markdown("📈 **Tổng lượt truy cập:** 0")
 
 # --- Hàm tải và giải nén mô hình từ Google Drive ---
 def download_and_extract_model():
@@ -66,6 +87,7 @@ index = faiss.read_index(faiss_path)
 query = st.text_input("💬 Nhập câu hỏi kỹ thuật hoặc lỗi máy móc:")
 
 if query:
+    log_visit(query)  # ✅ Ghi log khi có câu hỏi mới
     # Encode câu hỏi & tìm top-k
     query_embedding = model.encode([query])
     st.session_state.visit_count += 1  # Tăng lượt đếm khi người dùng đặt câu hỏi
