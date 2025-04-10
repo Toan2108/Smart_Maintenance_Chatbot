@@ -133,20 +133,20 @@ chat_history = "\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state.history
 prompt = f"""
 {chat_history}
 
---- Câu hỏi ---
+#--- Câu hỏi ---
 {query}
 
---- Dưới đây là dữ liệu kỹ thuật nội bộ ---
+#--- Dưới đây là dữ liệu kỹ thuật nội bộ ---
 {context}
 
 Hãy trả lời ngắn gọn, chính xác, dễ hiểu và dựa vào DỮ LIỆU NỘI BỘ bên trên. Nếu có thể, hãy đề xuất ít nhất 3 giải pháp.
 """
 
 
---- Dữ liệu kỹ thuật ---
+#--- Dữ liệu kỹ thuật ---
 {context}
 
---- Câu hỏi ---
+#--- Câu hỏi ---
 {query}
 
 Vui lòng trả lời ngắn gọn, chính xác, dễ hiểu, và dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp.
