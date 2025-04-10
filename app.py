@@ -2,13 +2,11 @@
 import streamlit as st
 # --- Khởi tạo bộ đếm truy cập phiên ---
 if "visit_count" not in st.session_state:
-if "history" not in st.session_state:
-    st.session_state.history = []
-
     st.session_state.visit_count = 1
 else:
     st.session_state.visit_count += 1
-
+if "history" not in st.session_state:
+    st.session_state.history = []
 st.set_page_config(page_title="AI Chatbot Bảo Trì", layout="wide")
 st.image("https://raw.githubusercontent.com/Toan2108/Smart_Maintenance_Chatbot/main/Logo.jpg", width=200)
 
