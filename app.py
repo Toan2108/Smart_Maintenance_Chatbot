@@ -137,9 +137,6 @@ Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu li�
 --- Câu hỏi ---
 {query}
 
---- Dưới đây là dữ liệu kỹ thuật nội bộ ---
-{context}
-
     Hãy trả lời ngắn gọn, chính xác, dễ hiểu và dựa vào thông tin từ DỮ LIỆU NỘI BỘ bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp.
 """
 
