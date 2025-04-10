@@ -7,7 +7,6 @@ else:
     st.session_state.visit_count += 1
 
 st.set_page_config(page_title="AI Chatbot Bảo Trì", layout="wide")
-st.image("Logo.jpg", width=200)
 
 # --- Import thư viện ---
 import openai
