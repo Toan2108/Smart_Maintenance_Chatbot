@@ -2,6 +2,9 @@
 import streamlit as st
 # --- Khởi tạo bộ đếm truy cập phiên ---
 if "visit_count" not in st.session_state:
+if "history" not in st.session_state:
+    st.session_state.history = []
+
     st.session_state.visit_count = 1
 else:
     st.session_state.visit_count += 1
@@ -70,6 +73,15 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # --- Tiêu đề giao diện ---
+if st.session_state.history:
+    st.markdown("## 🗒️ Lịch sử hội thoại:")
+    for i, (q, a) in enumerate(st.session_state.history, 1):
+        with st.expander(f"Câu {i}: {q}"):
+            st.write(a)
+if st.button("🧹 Xóa hội thoại"):
+    st.session_state.history = []
+    st.experimental_rerun()
+
 st.title("🤖 Smart Maintenance Chatbot")
 st.markdown("Chatbot hỗ trợ kỹ thuật viên tra cứu lỗi & hướng xử lý từ dữ liệu huấn luyện nội bộ.")
 
@@ -117,6 +129,17 @@ if query:
 
     prompt = f"""
 Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu liên quan:
+# Tạo đoạn hội thoại trước (nếu có)
+chat_history = "\n".join([f"Q: {q}\nA: {a}" for q, a in st.session_state.history])
+
+prompt = f"""
+{chat_history}
+Q: {query}
+Dưới đây là dữ liệu kỹ thuật nội bộ:
+{context}
+
+Hãy trả lời ngắn gọn, chính xác, dễ hiểu và chỉ dựa vào dữ liệu nội bộ. Nếu có thể, hãy đề xuất ít nhất 3 giải pháp.
+"""
 
 --- Dữ liệu kỹ thuật ---
 {context}
@@ -143,6 +166,7 @@ Vui lòng trả lời ngắn gọn, chính xác, dễ hiểu, và dựa vào th�
             messages=[{"role": "user", "content": prompt}]
         )
         answer = response.choices[0].message.content.strip()
+        st.session_state.history.append((query, answer))
 
         st.markdown("### 🤖 Kết quả từ AI:")
         st.success(answer)
