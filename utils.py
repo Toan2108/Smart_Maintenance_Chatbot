@@ -1,39 +1,42 @@
 import os
+import pickle
+import faiss
 import gdown
 
-def download_if_not_exists(file_id: str, output_path: str):
-    """
-    Download a file from Google Drive if it does not exist locally.
-    Args:
-        file_id (str): The Google Drive file ID.
-        output_path (str): The local path to save the file.
-    """
+# ✅ Nhập ID Google Drive tại đây
+DOCS_FILE_ID = "1B9MXTHJHU98YCyDK03Dq9VdJuvMLSWDe"       # docs.pkl
+INDEX_FILE_ID = "1xw_y4wEHQSsdsTKDVUrDiKgJ-azKFzdB"      # index.faiss
+
+# ✅ Đường dẫn tạm để lưu khi tải file từ Google Drive
+DOCS_PATH = "/tmp/docs.pkl"
+INDEX_PATH = "/tmp/index.faiss"
+
+# -------------------------------
+# 📥 Hàm tải file từ Google Drive
+# -------------------------------
+def download_from_google_drive(file_id, output_path):
+    url = f"https://drive.google.com/uc?id={file_id}"
     if not os.path.exists(output_path):
-        print(f"🔽 Downloading {output_path} from Google Drive...")
-        try:
-            url = f"https://drive.google.com/uc?id={file_id}"
-            gdown.download(url, output=output_path, quiet=False)
-        except Exception as e:
-            print(f"❌ Failed to download {output_path}: {e}")
-            raise
+        print(f"📥 Đang tải {output_path} từ Google Drive...")
+        gdown.download(url, output_path, quiet=False)
+    else:
+        print(f"✅ Đã có file {output_path}, bỏ qua tải lại.")
 
+# --------------------------------
+# 🔄 Hàm load docs và FAISS index
+# --------------------------------
 def load_faiss_and_docs():
-    """
-    Load or download FAISS index and docs.pkl from Google Drive.
-    Returns:
-        Tuple[str, str]: Paths to FAISS index and docs.pkl.
-    """
+    # B1: Tải file nếu chưa có
+    download_from_google_drive(DOCS_FILE_ID, DOCS_PATH)
+    download_from_google_drive(INDEX_FILE_ID, INDEX_PATH)
 
-    # Google Drive file IDs
-    faiss_id = "1cwIGZYwXffhydv49leWal46ewuQtBot5"
-    docs_id = "18j2Cn2Jn6DKV5p0ywbxQWuFqSr0Iu74V"
+    # B2: Load FAISS index
+    print("📦 Đang load FAISS index...")
+    index = faiss.read_index(INDEX_PATH)
 
-    # Output local file paths
-    faiss_path = "index.faiss"
-    docs_path = "docs.pkl"
+    # B3: Load docs
+    with open(DOCS_PATH, "rb") as f:
+        docs = pickle.load(f)
 
-    # Download files if not exist
-    download_if_not_exists(faiss_id, faiss_path)
-    download_if_not_exists(docs_id, docs_path)
-
-    return faiss_path, docs_path
+    print("✅ Load thành công FAISS index và dữ liệu.")
+    return index, docs
