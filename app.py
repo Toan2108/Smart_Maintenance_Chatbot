@@ -78,8 +78,6 @@ index, docs = load_faiss_and_docs()
 if isinstance(docs, dict):
     docs = list(docs.values())
 
-index = faiss.read_index(faiss_path)
-
 # --- Nhập câu hỏi ---
 query = st.text_input("💬 Nhập câu hỏi kỹ thuật hoặc lỗi máy móc:")
 
