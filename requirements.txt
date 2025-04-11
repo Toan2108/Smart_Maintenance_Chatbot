@@ -8,4 +8,4 @@ faiss-cpu
 gdown
 numpy
 requests
-torch
+
