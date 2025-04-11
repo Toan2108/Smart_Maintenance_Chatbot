@@ -8,4 +8,6 @@ faiss-cpu
 gdown
 numpy
 requests
-
+torch
+torchvision
+torchaudio
