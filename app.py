@@ -73,9 +73,7 @@ st.title("🤖 Smart Maintenance Chatbot")
 st.markdown("Chatbot hỗ trợ kỹ thuật viên tra cứu lỗi & hướng xử lý từ dữ liệu huấn luyện của Kỹ sư chuyên môn.")
 
 # --- Load FAISS index và dữ liệu ---
-faiss_path, docs_path = load_faiss_and_docs()
-with open(docs_path, "rb") as f:
-    docs = pickle.load(f)
+index, docs = load_faiss_and_docs()
 
 if isinstance(docs, dict):
     docs = list(docs.values())
