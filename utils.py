@@ -4,8 +4,8 @@ import faiss
 import gdown
 
 # ✅ Nhập ID Google Drive tại đây
-DOCS_FILE_ID = "18j2Cn2Jn6DKV5p0ywbxQWuFqSr0Iu74V"       # docs.pkl
-INDEX_FILE_ID = "1cwIGZYwXffhydv49leWal46ewuQtBot5"      # index.faiss
+DOCS_FILE_ID = "1BqEbPJBb_GTq9b0qhivSD038zOGh2juJ"       # docs.pkl
+INDEX_FILE_ID = "1R5iSgWbdlmCMwB9SKJw8yEBOngR9cfhj"      # index.faiss
 
 # ✅ Đường dẫn tạm để lưu khi tải file từ Google Drive
 DOCS_PATH = "/tmp/docs.pkl"
