@@ -111,7 +111,7 @@ if query:
         st.stop()
 
     prompt = f"""
-Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu liên quan:
+Bạn là chuyên gia, kỹ sư bảo trì. Dưới đây là dữ liệu kỹ thuật liên quan:
 
 --- Dữ liệu kỹ thuật ---
 {context}
@@ -119,7 +119,7 @@ Bạn là chuyên gia kỹ thuật bảo trì. Dưới đây là dữ liệu li�
 --- Câu hỏi ---
 {query}
 
-Vui lòng trả lời ngắn gọn, chính xác, dễ hiểu, và dựa vào thông tin từ DỮ LIỆU kỹ thuật bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp, bao gồm ít nhất 1 giải pháp phòng ngừa.
+Vui lòng trả lời ngắn gọn, chính xác, dễ hiểu, và dựa vào thông tin từ Dữ liệu kỹ thuật bên trên và ChatGPT để đề xuất tối thiểu 3 giải pháp, bao gồm ít nhất 1 giải pháp phòng ngừa.
 """
 
     # ✅ Hiển thị các đoạn dữ liệu được dùng
