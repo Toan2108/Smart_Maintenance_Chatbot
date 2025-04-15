@@ -1,11 +1,12 @@
-import faiss
-import pickle
+def load_faiss_and_docs(index_path="/tmp/index.faiss", docs_path="/tmp/docs.pkl"):
+    import faiss
+    import pickle
 
-def load_faiss_and_docs(faiss_path="index.faiss", docs_path="docs.pkl"):
-    index = faiss.read_index(faiss_path)
+    index = faiss.read_index(index_path)
     with open(docs_path, "rb") as f:
         docs = pickle.load(f)
     return index, docs
+
 
 import os
 import gdown
