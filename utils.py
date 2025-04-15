@@ -1,4 +1,4 @@
-MODEL_FILE_ID = "1k9SpLAiX8G_-5D8PlSEtk1BaD--_KGJJ"
+MODEL_FILE_ID = "1zVhluWQbAQ0eNdRLxflTdqssilc9E2cz"
 MODEL_PATH = "/tmp/local_model"
 import zipfile
 
