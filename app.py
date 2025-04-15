@@ -68,7 +68,7 @@ Bạn là chuyên gia kỹ thuật. Dưới đây là một số thông tin kỹ
 {context_text}
 
 Câu hỏi: {query}
-Vui lòng trả lời chính xác, rõ ràng, ngắn gọn. Dựa vào dữ liệu kỹ thuật ở trên, đề xuất ít nhất 3 giải pháp và có ít nhất 1 giải pháp phòng ngừa.
+Vui lòng trả lời chính xác, rõ ràng, ngắn gọn, liên quan nội dung câu hỏi. Dựa vào dữ liệu kỹ thuật ở trên, đề xuất ít nhất 3 giải pháp và có ít nhất 1 giải pháp phòng ngừa.
 """
 
         try:
