@@ -1,9 +1,21 @@
 import streamlit as st
 import openai
 import os
+os.environ["TRANSFORMERS_NO_ADVISORY_WARNINGS"] = "1"
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
+os.environ["HF_HOME"] = "/tmp"  # nơi lưu cache model
+os.environ["HF_DATASETS_CACHE"] = "/tmp"
+os.environ["HF_METRICS_CACHE"] = "/tmp"
+
 import numpy as np
 from dotenv import load_dotenv
 from sentence_transformers import SentenceTransformer
+
+@st.cache_resource
+def load_model():
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+    return model
+
 from sklearn.preprocessing import normalize
 from utils import load_faiss_and_docs
 
@@ -17,7 +29,7 @@ st.title("🤖 Smart Maintenance Chatbot")
 st.markdown("Nhập câu hỏi kỹ thuật để được hỗ trợ từ dữ liệu nội bộ đã huấn luyện.")
 
 # ✅ Load dữ liệu FAISS và văn bản
-index, docs = load_faiss_and_docs()
+index, docs = load_faiss_and_docs("/tmp/index.faiss", "/tmp/docs.pkl")
 
 # ✅ Load mô hình embedding
 model = SentenceTransformer("all-mpnet-base-v2")
