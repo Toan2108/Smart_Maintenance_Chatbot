@@ -1,42 +1,25 @@
-import os
-import pickle
 import faiss
+import pickle
+import os
 import gdown
 
-# ✅ Nhập ID Google Drive tại đây
-DOCS_FILE_ID = "1PqeRuBbPJjLg6ErYyIzonkvqwl1rhwJq"       # docs.pkl
-INDEX_FILE_ID = "1jRBkfg_HDPvGgpehAgr71QuGSbnUPpOA"      # index.faiss
+# ✅ ID file Google Drive (cập nhật theo file thật của bạn)
+DOCS_ID = "1B9MXTHJHU98YCyDK03Dq9VdJuvMLSWDe"       # docs.pkl
+INDEX_ID = "1xw_y4wEHQSsdsTKDVUrDiKgJ-azKFzdB"      # index.faiss
 
-# ✅ Đường dẫn tạm để lưu khi tải file từ Google Drive
-DOCS_PATH = "/tmp/docs.pkl"
-INDEX_PATH = "/tmp/index.faiss"
-
-# -------------------------------
-# 📥 Hàm tải file từ Google Drive
-# -------------------------------
-def download_from_google_drive(file_id, output_path):
-    url = f"https://drive.google.com/uc?id={file_id}"
+def download_file(file_id, output_path):
     if not os.path.exists(output_path):
-        print(f"📥 Đang tải {output_path} từ Google Drive...")
+        url = f"https://drive.google.com/uc?id={file_id}"
         gdown.download(url, output_path, quiet=False)
     else:
-        print(f"✅ Đã có file {output_path}, bỏ qua tải lại.")
+        print(f"✅ Đã có sẵn: {output_path}")
 
-# --------------------------------
-# 🔄 Hàm load docs và FAISS index
-# --------------------------------
 def load_faiss_and_docs():
-    # B1: Tải file nếu chưa có
-    download_from_google_drive(DOCS_FILE_ID, DOCS_PATH)
-    download_from_google_drive(INDEX_FILE_ID, INDEX_PATH)
+    download_file(DOCS_ID, "docs.pkl")
+    download_file(INDEX_ID, "index.faiss")
 
-    # B2: Load FAISS index
-    print("📦 Đang load FAISS index...")
-    index = faiss.read_index(INDEX_PATH)
-
-    # B3: Load docs
-    with open(DOCS_PATH, "rb") as f:
+    with open("docs.pkl", "rb") as f:
         docs = pickle.load(f)
 
-    print("✅ Load thành công FAISS index và dữ liệu.")
+    index = faiss.read_index("index.faiss")
     return index, docs
