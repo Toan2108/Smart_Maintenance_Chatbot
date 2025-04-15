@@ -3,9 +3,12 @@ import pickle
 import os
 import gdown
 
-# ✅ ID file Google Drive (cập nhật theo file thật của bạn)
-DOCS_ID = "1a9gjf3uSoU14LrzydfPaksMBDvjArINS"       # docs.pkl
-INDEX_ID = "15sT4YLUUozCax9Sy8rHqC91vTU9toL0w"      # index.faiss
+# ✅ ID file Google Drive (public link)
+DOCS_ID = "1a9gjf3uSoU14LrzydfPaksMBDvjArINS"
+INDEX_ID = "15sT4YLUUozCax9Sy8rHqC91vTU9toL0w"
+
+DOCS_PATH = "/tmp/docs.pkl"
+INDEX_PATH = "/tmp/index.faiss"
 
 def download_file(file_id, output_path):
     if not os.path.exists(output_path):
@@ -15,11 +18,13 @@ def download_file(file_id, output_path):
         print(f"✅ Đã có sẵn: {output_path}")
 
 def load_faiss_and_docs():
-    download_file(DOCS_ID, "docs.pkl")
-    download_file(INDEX_ID, "index.faiss")
+    download_file(DOCS_ID, DOCS_PATH)
+    download_file(INDEX_ID, INDEX_PATH)
 
-    with open("docs.pkl", "rb") as f:
+    index = faiss.read_index(INDEX_PATH)
+
+    with open(DOCS_PATH, "rb") as f:
         docs = pickle.load(f)
 
-    index = faiss.read_index("index.faiss")
+    print("✅ Đã load xong FAISS và dữ liệu.")
     return index, docs
