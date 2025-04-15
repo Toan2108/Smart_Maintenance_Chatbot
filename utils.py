@@ -4,8 +4,8 @@ import os
 import gdown
 
 # ✅ ID file Google Drive (cập nhật theo file thật của bạn)
-DOCS_ID = "1B9MXTHJHU98YCyDK03Dq9VdJuvMLSWDe"       # docs.pkl
-INDEX_ID = "1xw_y4wEHQSsdsTKDVUrDiKgJ-azKFzdB"      # index.faiss
+DOCS_ID = "1a9gjf3uSoU14LrzydfPaksMBDvjArINS"       # docs.pkl
+INDEX_ID = "15sT4YLUUozCax9Sy8rHqC91vTU9toL0w"      # index.faiss
 
 def download_file(file_id, output_path):
     if not os.path.exists(output_path):
