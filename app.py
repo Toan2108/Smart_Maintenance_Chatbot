@@ -29,7 +29,7 @@ st.title("🤖 Smart Maintenance Chatbot")
 st.markdown("Nhập câu hỏi kỹ thuật để được hỗ trợ từ dữ liệu nội bộ đã huấn luyện.")
 
 # ✅ Load dữ liệu FAISS và văn bản
-index, docs = load_faiss_and_docs("/tmp/index.faiss", "/tmp/docs.pkl")
+index, docs = load_faiss_and_docs()
 
 # ✅ Load mô hình embedding
 model = SentenceTransformer("all-mpnet-base-v2")
