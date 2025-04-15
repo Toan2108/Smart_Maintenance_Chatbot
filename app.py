@@ -33,7 +33,12 @@ index, docs = load_faiss_and_docs()
 
 # ✅ Load mô hình embedding
 from sentence_transformers import SentenceTransformer
-model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
+
+from utils import download_and_extract_model
+
+# Load mô hình từ local (đã được giải nén)
+model_path = download_and_extract_model()
+model = SentenceTransformer(model_path)
 
 # ✅ Nhập câu hỏi từ người dùng
 query = st.text_input("🛠️ Nhập câu hỏi kỹ thuật:")
