@@ -32,8 +32,6 @@ st.markdown("Nhập câu hỏi kỹ thuật để được hỗ trợ từ dữ 
 index, docs = load_faiss_and_docs()
 
 # ✅ Load mô hình embedding
-from sentence_transformers import SentenceTransformer
-
 from utils import download_and_extract_model
 
 # Load mô hình từ local (đã được giải nén)
