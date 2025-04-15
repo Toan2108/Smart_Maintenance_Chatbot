@@ -1,3 +1,17 @@
+MODEL_FILE_ID = "1k9SpLAiX8G_-5D8PlSEtk1BaD--_KGJJ"
+MODEL_PATH = "/tmp/local_model"
+import zipfile
+
+def download_and_extract_model():
+    zip_path = "/tmp/all-mpnet-base-v2.zip"
+    download_file(MODEL_FILE_ID, zip_path)
+
+    # Giải nén
+    with zipfile.ZipFile(zip_path, "r") as zip_ref:
+        zip_ref.extractall(MODEL_PATH)
+
+    return MODEL_PATH
+
 def load_faiss_and_docs(index_path="/tmp/index.faiss", docs_path="/tmp/docs.pkl"):
     import faiss
     import pickle
