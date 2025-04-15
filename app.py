@@ -32,7 +32,8 @@ st.markdown("Nhập câu hỏi kỹ thuật để được hỗ trợ từ dữ 
 index, docs = load_faiss_and_docs()
 
 # ✅ Load mô hình embedding
-model = SentenceTransformer("all-mpnet-base-v2")
+from sentence_transformers import SentenceTransformer
+model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
 
 # ✅ Nhập câu hỏi từ người dùng
 query = st.text_input("🛠️ Nhập câu hỏi kỹ thuật:")
