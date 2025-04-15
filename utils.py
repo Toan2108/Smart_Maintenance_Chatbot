@@ -6,7 +6,7 @@ def load_faiss_and_docs(index_path="/tmp/index.faiss", docs_path="/tmp/docs.pkl"
     with open(docs_path, "rb") as f:
         docs = pickle.load(f)
     return index, docs
-
+import pickle
 import faiss
 import os
 import gdown
