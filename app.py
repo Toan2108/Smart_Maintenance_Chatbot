@@ -1,6 +1,7 @@
 import streamlit as st
 import openai
 import os
+os.environ["TORCH_DISABLE_WATCHDOG"] = "1"
 os.environ["TRANSFORMERS_NO_ADVISORY_WARNINGS"] = "1"
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
 os.environ["HF_HOME"] = "/tmp"  # nơi lưu cache model
