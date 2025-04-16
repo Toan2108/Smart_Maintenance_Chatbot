@@ -27,7 +27,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # ✅ Cấu hình giao diện
 st.set_page_config(page_title="Smart Maintenance Chatbot", layout="wide")
 st.title("🤖 Smart Maintenance Chatbot")
-st.markdown("Nhập câu hỏi kỹ thuật để được hỗ trợ từ dữ liệu nội bộ đã huấn luyện.")
+st.markdown("Nhập câu hỏi kỹ thuật để được hỗ trợ từ dữ liệu kỹ thuật đã huấn luyện.")
 
 # ✅ Load dữ liệu FAISS và văn bản
 index, docs = load_faiss_and_docs()
@@ -62,12 +62,12 @@ if query:
 
         context_text = "\n\n".join(contexts)
         prompt = f"""
-Bạn là chuyên gia kỹ thuật. Dưới đây là một số thông tin kỹ thuật nội bộ:
+Bạn là chuyên gia kỹ thuật, kỹ sư Bảo trì. Dưới đây là một số thông tin kỹ thuật liên quan:
 
 {context_text}
 
 Câu hỏi: {query}
-Vui lòng trả lời chính xác, rõ ràng, ngắn gọn. Dựa vào dữ liệu kỹ thuật ở trên, đề xuất liên quan nội dung câu hỏi ít nhất 3 giải pháp và có ít nhất 1 giải pháp phòng ngừa.
+Vui lòng trả lời chính xác, rõ ràng, ngắn gọn. Dựa vào dữ liệu kỹ thuật ở trên, đề xuất ít nhất 3 giải pháp và có 1 giải pháp phòng ngừa, các đề xuất phải liên quan đến nội dung của câu hỏi.
 """
 
         try:
