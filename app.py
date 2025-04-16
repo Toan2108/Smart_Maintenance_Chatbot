@@ -27,7 +27,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # ✅ Cấu hình giao diện
 st.set_page_config(page_title="Smart Maintenance Chatbot", layout="wide")
 st.title("🤖 Smart Maintenance Chatbot")
-st.markdown("Nhập câu hỏi kỹ thuật để được hỗ trợ từ dữ liệu kỹ thuật đã huấn luyện.")
+st.markdown("Nhập câu hỏi kỹ thuật để được hỗ trợ từ Kỹ sư chuyên môn.")
 
 # ✅ Load dữ liệu FAISS và văn bản
 index, docs = load_faiss_and_docs()
