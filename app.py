@@ -74,7 +74,7 @@ Yêu cầu:
 - Giải pháp phải **liên quan đến nội dung câu hỏi và thông tin kỹ thuật được cung cấp ở trên**.
 - Thêm **01 giải pháp mang tính phòng ngừa** để tránh sự cố tái diễn.
 - Câu trả lời cần **ngắn gọn, rõ ràng, dễ hiểu**, viết dưới dạng **liệt kê đánh số** (1, 2, 3, ...).
-- Tuyệt đối **không thêm thông tin ngoài tài liệu nếu không chắc chắn**.
+- Tuyệt đối **chỉ thêm thông tin ngoài tài liệu nếu thông tin chắc chắn**.
 
 Chỉ trả lời đúng trọng tâm, không lặp lại câu hỏi.
 """
