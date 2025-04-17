@@ -56,18 +56,28 @@ if query:
     if not contexts:
         st.error("Không tìm thấy thông tin phù hợp.")
     else:
-        st.subheader("📎 Tài liệu tham chiếu:")
-
+    st.subheader("📎 Tài liệu tham chiếu:")
     for i, ctx in enumerate(contexts):
-        st.markdown(f"### Đoạn {i+1}:")
-
-        # Tách theo dòng (dữ liệu đã chuẩn hóa sẵn)
         lines = ctx.strip().split("\n")
         device = lines[0] if len(lines) > 0 else ""
         issue = lines[1] if len(lines) > 1 else ""
         cause = lines[2] if len(lines) > 2 else ""
 
-        context_text = "\n\n".join(contexts)
+    st.markdown(f"**Đoạn {i+1}:**", unsafe_allow_html=True)
+
+    st.markdown(
+        f"""
+        <div style="background-color:#F0F8FF;padding:12px 16px;border-radius:10px;margin-bottom:12px;">
+            <pre style="font-family:monospace;font-size:15px;line-height:1.5;margin:0;">
+{device}
+{issue}
+{cause}
+            </pre>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
         prompt = f"""
 Bạn là chuyên gia kỹ thuật, kỹ sư Bảo trì. Dưới đây là một số thông tin kỹ thuật liên quan:
 
