@@ -58,21 +58,7 @@ if query:
     else:
         st.subheader("📎 Tài liệu tham chiếu:")
         for i, ctx in enumerate(contexts):
-            lines = ctx.strip().split("\n")
-            device = lines[0] if len(lines) > 0 else ""
-            issue = lines[1] if len(lines) > 1 else ""
-            cause = lines[2] if len(lines) > 2 else ""
-
-            st.markdown(f"**Đoạn {i+1}:**", unsafe_allow_html=True)
-
-            html_block = (
-                '<div style="background-color:#F0F8FF;padding:12px 16px;'
-                'border-radius:10px;margin-bottom:12px;">'
-                '<pre style="font-family:monospace;font-size:15px;line-height:1.5;margin:0;">'
-                f'{device}\n{issue}\n{cause}'
-                '</pre></div>'
-            )
-            st.markdown(html_block, unsafe_allow_html=True)
+            st.markdown(f"**{i+1}.** {ctx}")
         context_text = "\n\n".join(contexts)
         prompt = f"""
 Bạn là chuyên gia kỹ thuật, kỹ sư Bảo trì. Dưới đây là một số thông tin kỹ thuật liên quan:
