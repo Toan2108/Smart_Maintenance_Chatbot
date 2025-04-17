@@ -73,8 +73,8 @@ Yêu cầu:
 - Đưa ra ít nhất **03 giải pháp cụ thể** để xử lý vấn đề.
 - Giải pháp phải **liên quan đến nội dung câu hỏi và thông tin kỹ thuật được cung cấp ở trên**.
 - Thêm **01 giải pháp mang tính phòng ngừa** để tránh sự cố tái diễn.
-- Câu trả lời cần **ngắn gọn, rõ ràng, dễ hiểu**, viết dưới dạng **liệt kê đánh số** (1, 2, 3, ...).
 - Thêm **01 giải pháp từ ChatGPT, lưu ý: chỉ thêm thông tin ngoài tài liệu nếu thông tin chắc chắn**.
+- Câu trả lời cần **ngắn gọn, rõ ràng, dễ hiểu**, viết dưới dạng **liệt kê đánh số** (1, 2, 3) cho 3 giải pháp đầu tiên.
 
 Chỉ trả lời đúng trọng tâm, không lặp lại câu hỏi.
 """
