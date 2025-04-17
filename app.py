@@ -58,7 +58,7 @@ if query:
     else:
         st.subheader("📎 Tài liệu tham chiếu:")
 
-        for i, ctx in enumerate(contexts):
+    for i, ctx in enumerate(contexts):
         st.markdown(f"### Đoạn {i+1}:")
 
         # Tách theo dòng (dữ liệu đã chuẩn hóa sẵn)
