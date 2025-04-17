@@ -61,14 +61,23 @@ if query:
             st.markdown(f"**{i+1}.** {ctx}")
         context_text = "\n\n".join(contexts)
         prompt = f"""
-Bạn là chuyên gia kỹ thuật, kỹ sư Bảo trì. Dưới đây là một số thông tin kỹ thuật liên quan:
+Bạn là một kỹ sư bảo trì chuyên nghiệp. Dưới đây là một số thông tin kỹ thuật liên quan đã được cung cấp từ tài liệu nội bộ:
 
 {context_text}
 
-Câu hỏi: {query}
-Vui lòng trả lời chính xác, rõ ràng, ngắn gọn. Dựa vào dữ liệu kỹ thuật ở trên, đề xuất ít nhất 3 giải pháp và có 1 giải pháp phòng ngừa, các đề xuất phải liên quan đến nội dung của câu hỏi.
-"""
+Dựa trên tài liệu kỹ thuật ở trên, hãy phân tích và đưa ra câu trả lời chính xác cho câu hỏi sau:
 
+Câu hỏi: {query}
+
+Yêu cầu:
+- Đưa ra ít nhất **03 giải pháp cụ thể** để xử lý vấn đề.
+- Giải pháp phải **liên quan đến nội dung kỹ thuật được cung cấp ở trên**.
+- Thêm **01 giải pháp mang tính phòng ngừa** để tránh sự cố tái diễn.
+- Câu trả lời cần **ngắn gọn, rõ ràng, dễ hiểu**, viết dưới dạng **liệt kê đánh số** (1, 2, 3, ...).
+- Tuyệt đối **không thêm thông tin ngoài tài liệu nếu không chắc chắn**.
+
+Chỉ trả lời đúng trọng tâm, không lặp lại câu hỏi.
+"""
         try:
             from openai import OpenAI
             client = OpenAI()
