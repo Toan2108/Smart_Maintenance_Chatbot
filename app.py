@@ -78,6 +78,7 @@ Vui lòng trả lời chính xác, rõ ràng, ngắn gọn. Dựa vào dữ li�
                 messages=[{"role": "user", "content": prompt}]
             )
             answer = response.choices[0].message.content.strip()
+            st.markdown("### 🤖 Kết quả từ AI:")
             st.success(answer)
         except Exception as e:
             st.error(f"Lỗi khi gọi OpenAI API: {e}")
