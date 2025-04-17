@@ -67,19 +67,6 @@ if query:
         issue = lines[1] if len(lines) > 1 else ""
         cause = lines[2] if len(lines) > 2 else ""
 
-        st.markdown(
-            f"""
-            <div style="background-color:#F8F9FA;padding:12px 16px;border-radius:8px;margin-bottom:10px;">
-                <pre style="font-family:monospace;font-size:15px;margin:0">
-{device}
-{issue}
-{cause}
-            </pre>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
         context_text = "\n\n".join(contexts)
         prompt = f"""
 Bạn là chuyên gia kỹ thuật, kỹ sư Bảo trì. Dưới đây là một số thông tin kỹ thuật liên quan:
