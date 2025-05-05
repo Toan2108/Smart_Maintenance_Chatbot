@@ -27,7 +27,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 # ✅ Cấu hình giao diện
 st.set_page_config(page_title="Smart Maintenance Chatbot", layout="wide")
 st.title("🤖 Smart Maintenance Chatbot")
-st.markdown("Nhập câu hỏi kỹ thuật để được hỗ trợ từ Kỹ sư chuyên môn.")
+st.markdown("Nhập câu hỏi kỹ thuật hoặc lỗi thiết bị để được hỗ trợ từ Kỹ sư chuyên môn.")
 
 # ✅ Load dữ liệu FAISS và văn bản
 index, docs = load_faiss_and_docs()
@@ -40,7 +40,7 @@ model_path = download_and_extract_model()
 model = SentenceTransformer(model_path)
 
 # ✅ Nhập câu hỏi từ người dùng
-query = st.text_input("🛠️ Nhập câu hỏi kỹ thuật:")
+query = st.text_input("🛠️ Nhập câu hỏi kỹ thuật hoặc lỗi thiết bị:")
 
 if query:
     query_embedding = model.encode([query])
